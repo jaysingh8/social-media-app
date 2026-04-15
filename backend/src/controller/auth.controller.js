@@ -42,6 +42,7 @@ const jwt = require('jsonwebtoken')
     res.status(201).json({
         message: "Register Successful",
         user: {
+            _id:user._id,
             username: user.username,
             email: user.email,
             bio: user.bio,
@@ -61,7 +62,7 @@ const jwt = require('jsonwebtoken')
                 username: username
             }
         ]
-    })
+    }).select("+password")
 
     if (!user) {
         return res.status(404).json({
@@ -90,6 +91,7 @@ const jwt = require('jsonwebtoken')
         {
             message: "login successfull",
             user: {
+                _id:user._id,
                 username: user.username,
                 email: user.email,
                 bio: user.bio,
@@ -98,4 +100,34 @@ const jwt = require('jsonwebtoken')
         }
     )
 }
-module.exports = {registerController , loginController}
+
+async function getMeController(req, res) {
+  try {
+    const userId = req.user.id;
+
+    const user = await userModel.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
+
+    res.status(200).json({
+      user: {
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+        bio: user.bio,
+        profile: user.profile,
+      },
+    });
+
+  } catch (err) {
+    console.log("getMe Error:", err);
+    res.status(500).json({
+      message: "Server error",
+    });
+  }
+}
+module.exports = {registerController , loginController, getMeController}
