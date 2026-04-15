@@ -7,12 +7,12 @@ const cors = require('cors');
 const app = express()
 app.use(express.json())
 app.use(cookieParser())
-app.use(
-  cors({
-    origin: ["http://localhost:5173", "https://your-frontend.vercel.app"],
-    credentials: true,
-  })
-);
+app.use(cors(
+    {
+        credentials:true,
+        origin:"http://localhost:5173"
+    }
+))
 
 
 const authRouter = require('./routes/auth.route')
