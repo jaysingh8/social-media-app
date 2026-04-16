@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { toast } from "react-toastify";
 import Loading from "../../shared/components/Loading";
-
+import "../style/form.scss"
 const Register = () => {
   const { loading, handleRegister } = useAuth();
   const navigate = useNavigate();

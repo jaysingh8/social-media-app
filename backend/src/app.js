@@ -10,7 +10,7 @@ app.use(cookieParser())
 app.use(cors(
     {
         credentials:true,
-        origin:["http://localhost:5173","https://social-media-app-n5w5.vercel.app/login"]
+        origin:"http://localhost:5173"
     }
 ))
 
