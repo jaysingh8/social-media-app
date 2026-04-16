@@ -102,7 +102,7 @@ const Profile = () => {
             </button>
           ) : (
             <FollowButton
-              userId={user._id}
+              userId={user?._id}
               initialFollowing={isFollowing}
               initialFollowers={followers}
               setFollowers={setFollowers}
@@ -110,12 +110,12 @@ const Profile = () => {
             />
           )}
           {showEdit && (
-  <EditProfile
-    user={user}
-    setUser={setUser}
-    close={() => setShowEdit(false)}
-  />
-)}
+            <EditProfile
+              user={user}
+              setUser={setUser}
+              close={() => setShowEdit(false)}
+            />
+          )}
         </div>
       </div>
 
@@ -133,9 +133,9 @@ const Profile = () => {
           <p className="no-posts">No posts yet</p>
         )}
       </div>
-   
+
     </main>
-    
+
   );
 };
 
