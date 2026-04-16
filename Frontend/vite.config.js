@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { base } from '../Backend/src/models/user.model';
+
 
 // https://vite.dev/config/
 export default defineConfig({
